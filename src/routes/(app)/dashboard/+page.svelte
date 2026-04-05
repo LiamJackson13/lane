@@ -67,48 +67,12 @@
 		font-size: 0.85rem;
 		color: #9b9b9b;
 	}
-
-	.actions {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 0.5rem;
-	}
-
-	.btn-primary,
-	.btn-ghost {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0.55rem 0.85rem;
-		border-radius: 8px;
-		font-size: 13px;
-		font-weight: 500;
-		text-decoration: none;
-	}
-
-	.btn-primary {
-		background: #4fc3f7;
-		color: #0a0a0b;
-	}
-
-	.btn-ghost {
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		color: #c7c7c7;
-	}
-
-	.btn-ghost:hover {
-		border-color: rgba(255, 255, 255, 0.3);
-		color: #f0efe8;
-	}
-
 	.overview {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 0.75rem;
 		margin: 0;
 	}
-
 	.overview div {
 		background: rgba(22, 22, 24, 0.9);
 		border: 1px solid rgba(255, 255, 255, 0.08);

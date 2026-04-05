@@ -10,7 +10,7 @@ import { member, session as sessionTable } from './db/auth.schema';
 import { asc, eq } from 'drizzle-orm';
 
 export const auth = betterAuth({
-	baseURL: env.ORIGIN,
+	baseURL: env.PUBLIC_VITE_ORIGIN,
 	secret: env.BETTER_AUTH_SECRET,
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
