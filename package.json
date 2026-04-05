@@ -49,6 +49,7 @@
 		"vite-plugin-devtools-json": "^1.0.0"
 	},
 	"dependencies": {
+		"@better-auth/infra": "^0.1.14",
 		"valibot": "^1.3.1"
 	}
 }

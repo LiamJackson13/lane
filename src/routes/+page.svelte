@@ -63,8 +63,8 @@
 		<li><a href="#features">Features</a></li>
 		<li><a href="#locations">Multi-location</a></li>
 		<li><a href="#pricing">Pricing</a></li>
-		<li><a href="#demo" class="nav-cta">Book a demo</a></li>
 	</ul>
+	<a href="#demo" class="nav-cta nav-cta-right">Book a demo</a>
 </nav>
 
 <div class="hero">
@@ -106,35 +106,7 @@
 	</p>
 </div>
 
-<div class="preview-section reveal">
-	<div class="cost-panel">
-		<h2 class="cost-title">This is what your current system is costing you.</h2>
 
-		<div class="compare-grid">
-			<article class="compare-col compare-now">
-				<h3>What it feels like now</h3>
-				<ul>
-					<li>Payments slip through and revenue is lost.</li>
-					<li>Hours disappear into manual admin.</li>
-					<li>Parents chase updates and get frustrated.</li>
-					<li>Growth stalls because operations are overloaded.</li>
-				</ul>
-			</article>
-
-			<article class="compare-col compare-lane">
-				<h3>What it feels like with Lane</h3>
-				<ul>
-					<li>Payments and enrolments stay on track.</li>
-					<li>Admin is automated and your week opens up.</li>
-					<li>Parents get clear, timely communication.</li>
-					<li>You can scale locations without chaos.</li>
-				</ul>
-			</article>
-		</div>
-
-		<p class="cost-killer">Most swim schools do not fail on coaching. They fail on operations.</p>
-	</div>
-</div>
 
 <section id="features">
 	<span class="section-label reveal">Everything you need</span>
@@ -688,6 +660,9 @@
 		align-items: center;
 		gap: 2rem;
 		list-style: none;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	.nav-links a {
@@ -714,6 +689,10 @@
 
 	.nav-cta:hover {
 		opacity: 0.88;
+	}
+
+	.nav-cta-right {
+		margin-left: auto;
 	}
 
 	/* HERO */
@@ -1562,6 +1541,9 @@
 			gap: 2rem;
 		}
 		nav .nav-links {
+			display: none;
+		}
+		nav .nav-cta-right {
 			display: none;
 		}
 		.hero-actions {

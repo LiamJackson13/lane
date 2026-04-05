@@ -8,6 +8,7 @@ import { organization } from 'better-auth/plugins';
 import { schools } from './db/schools.schema';
 import { member, session as sessionTable } from './db/auth.schema';
 import { asc, eq } from 'drizzle-orm';
+import { dash } from '@better-auth/infra';
 
 export const auth = betterAuth({
 	baseURL: env.PUBLIC_VITE_ORIGIN,
@@ -15,6 +16,7 @@ export const auth = betterAuth({
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
 	plugins: [
+		dash(),
 		organization({
 			organizationHooks: {
 				afterCreateOrganization: async ({ organization }) => {
