@@ -16,7 +16,9 @@ export const auth = betterAuth({
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
 	plugins: [
-		dash(),
+		dash({
+			apiKey: env.BETTER_AUTH_API_KEY
+		}),
 		organization({
 			organizationHooks: {
 				afterCreateOrganization: async ({ organization }) => {
