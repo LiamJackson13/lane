@@ -5,6 +5,9 @@ import { env } from '$env/dynamic/private';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
 import { organization } from 'better-auth/plugins';
+import { schools } from './db/schools.schema';
+import { member, session as sessionTable } from './db/auth.schema';
+import { asc, eq } from 'drizzle-orm';
 
 export const auth = betterAuth({
 	baseURL: env.ORIGIN,
@@ -12,8 +15,21 @@ export const auth = betterAuth({
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
 	plugins: [
-		organization(),
-		sveltekitCookies(getRequestEvent) // make sure this is the last plugin in the array
+		organization({
+			organizationHooks: {
+				afterCreateOrganization: async ({ organization }) => {
+					try {
+						await db.insert(schools).values({
+							name: `${organization.name} - Main Location`,
+							organizationId: organization.id
+						});
+					} catch (err) {
+						console.error('Failed to create default school:', err);
+					}
+				}
+			}
+		}),
+		sveltekitCookies(getRequestEvent)
 	],
 	databaseHooks: {
 		user: {
@@ -29,6 +45,28 @@ export const auth = betterAuth({
 							keepCurrentActiveOrganization: false
 						}
 					});
+				}
+			}
+		},
+		session: {
+			create: {
+				after: async (createdSession) => {
+					if (createdSession.activeOrganizationId) return;
+
+					const firstMembership = await db
+						.select({ organizationId: member.organizationId })
+						.from(member)
+						.where(eq(member.userId, createdSession.userId))
+						.orderBy(asc(member.createdAt))
+						.limit(1);
+
+					const organizationId = firstMembership[0]?.organizationId;
+					if (!organizationId) return;
+
+					await db
+						.update(sessionTable)
+						.set({ activeOrganizationId: organizationId })
+						.where(eq(sessionTable.id, createdSession.id));
 				}
 			}
 		}

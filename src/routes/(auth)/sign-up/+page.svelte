@@ -7,11 +7,12 @@
 	let email = $state('');
 	let password = $state('');
 	let confirmPassword = $state('');
+	let authError = $state('');
 
 	const handleSubmit = async (e: Event) => {
 		e.preventDefault();
 		if (password !== confirmPassword) {
-			alert('Passwords do not match');
+			authError = 'Passwords do not match';
 			return;
 		}
 		const { data, error } = await authClient.signUp.email(
@@ -29,7 +30,7 @@
 				},
 				onError: (ctx) => {
 					// display the error message
-					alert(ctx.error.message);
+					authError = ctx.error.message;
 				}
 			}
 		);
@@ -74,6 +75,9 @@
 		<button type="submit">Sign Up</button>
 		<a href={resolve('/sign-in')} class="link">Already have an account? Sign In</a>
 	</form>
+	{#if authError}
+		<p style="color: red; text-align: center; margin-top: 15px;">{authError}</p>
+	{/if}
 </div>
 
 <style>

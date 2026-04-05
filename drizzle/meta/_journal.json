@@ -15,6 +15,34 @@
       "when": 1775367064883,
       "tag": "0001_lame_mercury",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1775369771369,
+      "tag": "0002_short_inertia",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1775369810822,
+      "tag": "0003_loose_the_renegades",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1775370910641,
+      "tag": "0004_cold_tarot",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1775371318936,
+      "tag": "0005_absent_night_thrasher",
+      "breakpoints": true
     }
   ]
 }

@@ -9,6 +9,7 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
 	if (session) {
 		event.locals.session = session.session;
 		event.locals.user = session.user;
+		event.locals.schoolId = event.cookies.get('schoolId');
 	}
 
 	return svelteKitHandler({ event, resolve, auth, building });

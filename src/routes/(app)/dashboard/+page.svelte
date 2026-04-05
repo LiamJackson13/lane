@@ -6,7 +6,6 @@
 </script>
 
 <h1>Welcome, {data.user.name}!</h1>
-<p>Your session ID is: {data.session.id}</p>
 <p>Your email is {data.user.email}</p>
 
 <SignOutButton />

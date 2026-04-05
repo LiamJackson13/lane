@@ -5,6 +5,7 @@
 
 	let email = $state('');
 	let password = $state('');
+	let authError = $state('');
 
 	const handleSubmit = async (e: Event) => {
 		e.preventDefault();
@@ -24,7 +25,7 @@
 				},
 				onError: (ctx) => {
 					// display the error message
-					alert(ctx.error.message);
+					authError = ctx.error.message;
 				}
 			}
 		);
@@ -53,6 +54,9 @@
 		<button type="submit">Sign In</button>
 		<a href={resolve('/sign-up')} class="link">Don't have an account? Sign Up</a>
 	</form>
+	{#if authError}
+		<p style="color: red; text-align: center; margin-top: 15px;">{authError}</p>
+	{/if}
 </div>
 
 <style>
