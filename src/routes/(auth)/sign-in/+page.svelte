@@ -25,6 +25,28 @@
 				},
 				onError: (ctx) => {
 					authError = ctx.error.message;
+					isSubmitting = false;
+				},
+				onResponse: () => {
+					isSubmitting = false;
+				}
+			}
+		);
+	};
+
+	const signInWithGoogle = async () => {
+		authError = '';
+		isSubmitting = true;
+
+		await authClient.signIn.social(
+			{
+				provider: 'google',
+				callbackURL: resolve('/dashboard')
+			},
+			{
+				onError: (ctx) => {
+					authError = ctx.error.message;
+					isSubmitting = false;
 				},
 				onResponse: () => {
 					isSubmitting = false;
@@ -83,6 +105,9 @@
 
 				<button class="submit" type="submit" disabled={isSubmitting}>
 					{isSubmitting ? 'Signing in...' : 'Sign in'}
+				</button>
+				<button class="submit" type="button" onclick={signInWithGoogle} disabled={isSubmitting}>
+					{isSubmitting ? 'Signing in...' : 'Sign in with Google'}
 				</button>
 			</form>
 

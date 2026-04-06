@@ -11,10 +11,18 @@ import { asc, eq } from 'drizzle-orm';
 import { dash } from '@better-auth/infra';
 
 export const auth = betterAuth({
+	appName: 'Lane',
 	baseURL: env.PUBLIC_VITE_ORIGIN,
 	secret: env.BETTER_AUTH_SECRET,
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
+	socialProviders: {
+		google: {
+			prompt: 'select_account',
+			clientId: env.GOOGLE_CLIENT_ID as string,
+			clientSecret: env.GOOGLE_CLIENT_SECRET as string
+		}
+	},
 	plugins: [
 		dash({
 			apiKey: env.BETTER_AUTH_API_KEY

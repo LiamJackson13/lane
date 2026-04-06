@@ -39,6 +39,27 @@
 			}
 		);
 	};
+
+	const signUpWithGoogle = async () => {
+		authError = '';
+		isSubmitting = true;
+
+		await authClient.signIn.social(
+			{
+				provider: 'google',
+				callbackURL: resolve('/dashboard')
+			},
+			{
+				onError: (ctx) => {
+					authError = ctx.error.message;
+					isSubmitting = false;
+				},
+				onResponse: () => {
+					isSubmitting = false;
+				}
+			}
+		);
+	};
 </script>
 
 <div class="auth-page">
@@ -107,6 +128,9 @@
 
 				<button class="submit" type="submit" disabled={isSubmitting}>
 					{isSubmitting ? 'Creating account...' : 'Create account'}
+				</button>
+				<button class="submit" type="button" onclick={signUpWithGoogle} disabled={isSubmitting}>
+					{isSubmitting ? 'Signing up...' : 'Sign up with Google'}
 				</button>
 			</form>
 
