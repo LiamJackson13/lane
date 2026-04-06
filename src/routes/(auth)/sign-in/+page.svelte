@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { authClient } from '$lib/auth-client';
+	import GoogleSignInButton from '$lib/components/GoogleSignInButton.svelte';
 
 	let email = $state('');
 	let password = $state('');
@@ -34,25 +35,8 @@
 		);
 	};
 
-	const signInWithGoogle = async () => {
-		authError = '';
-		isSubmitting = true;
-
-		await authClient.signIn.social(
-			{
-				provider: 'google',
-				callbackURL: resolve('/dashboard')
-			},
-			{
-				onError: (ctx) => {
-					authError = ctx.error.message;
-					isSubmitting = false;
-				},
-				onResponse: () => {
-					isSubmitting = false;
-				}
-			}
-		);
+	const handleGoogleError = (message: string) => {
+		authError = message;
 	};
 </script>
 
@@ -106,9 +90,12 @@
 				<button class="submit" type="submit" disabled={isSubmitting}>
 					{isSubmitting ? 'Signing in...' : 'Sign in'}
 				</button>
-				<button class="submit" type="button" onclick={signInWithGoogle} disabled={isSubmitting}>
-					{isSubmitting ? 'Signing in...' : 'Sign in with Google'}
-				</button>
+				<GoogleSignInButton
+					text="Sign in with Google"
+					pendingText="Signing in..."
+					disabled={isSubmitting}
+					onError={handleGoogleError}
+				/>
 			</form>
 
 			{#if authError}
