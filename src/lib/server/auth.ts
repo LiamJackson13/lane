@@ -47,7 +47,17 @@ export const auth = betterAuth({
 		user: {
 			create: {
 				after: async (user, ctx) => {
-					if (ctx?.path !== '/sign-up/email') return;
+					const path = ctx?.path ?? '';
+
+					const isSignupFlow =
+						path === '/sign-up/email' ||
+						path === '/sign-in/social' ||
+						path === '/callback/:id' ||
+						path === '/oauth2/callback/:providerId' ||
+						path.startsWith('/callback/') ||
+						path.startsWith('/oauth2/callback/');
+
+					if (!isSignupFlow) return;
 
 					await auth.api.createOrganization({
 						body: {

@@ -42,7 +42,7 @@
 
 <button
 	type="button"
-	class="google-button"
+	class="lane-social-button"
 	onclick={handleGoogleSignIn}
 	disabled={disabled || isPending}
 >
@@ -66,43 +66,3 @@
 	</svg>
 	{isPending ? pendingText : text}
 </button>
-
-<style>
-	.google-button {
-		width: 100%;
-		margin-top: 0.3rem;
-		padding: 0.82rem;
-		background: #ffffff;
-		color: #0a0a0b;
-		border: 1px solid rgba(255, 255, 255, 0.45);
-		border-radius: 10px;
-		font-size: 14px;
-		font-weight: 600;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.55rem;
-		cursor: pointer;
-		transition:
-			opacity 0.2s,
-			transform 0.15s,
-			box-shadow 0.2s;
-	}
-
-	.google-button:hover:enabled {
-		opacity: 0.96;
-		transform: translateY(-1px);
-		box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12);
-	}
-
-	.google-button:disabled {
-		opacity: 0.7;
-		cursor: default;
-	}
-
-	svg {
-		width: 18px;
-		height: 18px;
-		flex: 0 0 18px;
-	}
-</style>

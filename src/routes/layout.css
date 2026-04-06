@@ -1,2 +1,106 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+/* Tailwind v4 design tokens */
+@theme {
+	/* Typography */
+	--font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-serif: 'Instrument Serif', Georgia, serif;
+
+	/* Core surfaces */
+	--color-bg: #f1f5f9;
+	--color-surface: #ffffff;
+	--color-surface-hover: #f1f5f9;
+
+	/* Text */
+	--color-fg: #020617;
+	--color-text-secondary: #475569;
+	--color-text-tertiary: #94a3b8;
+
+	/* Borders */
+	--color-border: #e2e8f0;
+	--color-border-strong: #cbd5e1;
+
+	/* Brand (modern, confident blue) */
+	--color-primary: #1d4ed8;
+	--color-primary-hover: #1e40af;
+	--color-primary-contrast: #ffffff;
+
+	/* Semantic */
+	--color-success: #16a34a;
+	--color-warning: #d97706;
+	--color-danger: #dc2626;
+
+	/* Focus */
+	--color-focus: rgba(37, 99, 235, 0.35);
+}
+
+/* Dark theme token overrides */
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* Core surfaces */
+		--color-bg: #0b1220;
+		--color-surface: #111827;
+		--color-surface-hover: #1f2937;
+
+		/* Text */
+		--color-fg: #e5e7eb;
+		--color-text-secondary: #9ca3af;
+		--color-text-tertiary: #6b7280;
+
+		/* Borders */
+		--color-border: #1f2937;
+		--color-border-strong: #374151;
+
+		/* Brand */
+		--color-primary: #3b82f6;
+		--color-primary-hover: #60a5fa;
+		--color-primary-contrast: #ffffff;
+
+		/* Semantic */
+		--color-success: #22c55e;
+		--color-warning: #f59e0b;
+		--color-danger: #ef4444;
+
+		/* Focus */
+		--color-focus: rgba(59, 130, 246, 0.4);
+	}
+}
+
+/* Minimal global base only */
+@layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	body {
+		@apply m-0 bg-bg font-sans text-fg antialiased;
+	}
+}
+
+@layer components {
+	.ui-shell {
+		@apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+	}
+
+	.ui-card {
+		@apply rounded-2xl border border-border bg-surface p-6 shadow-lg;
+	}
+
+	.ui-kicker {
+		@apply text-xs font-semibold tracking-[0.16em] text-primary uppercase;
+	}
+
+	.ui-btn-primary {
+		@apply inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 font-medium text-primary-contrast transition hover:bg-primary-hover;
+		@apply focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg focus-visible:outline-none;
+	}
+
+	.ui-btn-secondary {
+		@apply inline-flex items-center justify-center rounded-md border border-border-strong bg-surface px-5 py-2.5 font-medium text-text-secondary transition;
+		@apply hover:bg-surface-hover hover:text-fg;
+		@apply focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg focus-visible:outline-none;
+	}
+}
