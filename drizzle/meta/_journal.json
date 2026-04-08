@@ -43,6 +43,13 @@
       "when": 1775371318936,
       "tag": "0005_absent_night_thrasher",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1775458339739,
+      "tag": "0006_sudden_wasp",
+      "breakpoints": true
     }
   ]
 }
