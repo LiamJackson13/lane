@@ -8,13 +8,13 @@
 	--font-serif: 'Instrument Serif', Georgia, serif;
 
 	/* Core surfaces */
-	--color-bg: #f1f5f9;
+	--color-bg: #f8fafc;
 	--color-surface: #ffffff;
 	--color-surface-hover: #f1f5f9;
 
 	/* Text */
-	--color-fg: #020617;
-	--color-text-secondary: #475569;
+	--color-fg: #0f172a;
+	--color-text-secondary: #64748b;
 	--color-text-tertiary: #94a3b8;
 
 	/* Borders */
@@ -22,8 +22,8 @@
 	--color-border-strong: #cbd5e1;
 
 	/* Brand (modern, confident blue) */
-	--color-primary: #1d4ed8;
-	--color-primary-hover: #1e40af;
+	--color-primary: #2563eb;
+	--color-primary-hover: #1d4ed8;
 	--color-primary-contrast: #ffffff;
 
 	/* Semantic */
@@ -85,22 +85,29 @@
 		@apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
 	}
 
+	.ui-section {
+		@apply py-20 md:py-28;
+	}
+
 	.ui-card {
-		@apply rounded-2xl border border-border bg-surface p-6 shadow-lg;
+		@apply rounded-2xl border border-border bg-surface p-6 shadow-sm;
+	}
+
+	.ui-card-hover {
+		@apply rounded-2xl border border-border bg-surface p-6 shadow-sm transition-all hover:border-border-strong hover:shadow-md;
 	}
 
 	.ui-kicker {
-		@apply text-xs font-semibold tracking-[0.16em] text-primary uppercase;
+		@apply text-xs font-medium tracking-[0.12em] text-primary uppercase;
 	}
 
 	.ui-btn-primary {
-		@apply inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 font-medium text-primary-contrast transition hover:bg-primary-hover;
+		@apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-contrast transition-colors hover:bg-primary-hover;
 		@apply focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg focus-visible:outline-none;
 	}
 
 	.ui-btn-secondary {
-		@apply inline-flex items-center justify-center rounded-md border border-border-strong bg-surface px-5 py-2.5 font-medium text-text-secondary transition;
-		@apply hover:bg-surface-hover hover:text-fg;
+		@apply inline-flex items-center justify-center rounded-lg border border-border bg-surface px-6 py-2.5 text-sm font-medium text-text-secondary transition-colors hover:bg-surface-hover hover:text-fg;
 		@apply focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg focus-visible:outline-none;
 	}
 }
