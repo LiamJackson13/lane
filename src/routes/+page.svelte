@@ -163,7 +163,7 @@
 				</div>
 
 				<div class="mt-16 grid gap-6 lg:grid-cols-3">
-					{#each plans as plan}
+					{#each plans as plan (plan.name)}
 						<article class={`ui-card flex flex-col ${plan.featured ? 'ring-2 ring-primary' : ''}`}>
 							<div class="flex-1">
 								<p class="text-sm font-medium text-text-secondary">{plan.name}</p>
