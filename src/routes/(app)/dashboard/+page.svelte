@@ -7,5 +7,3 @@
 <h1>Dashboard</h1>
 
 <p>School ID: {data.schoolId ?? 'None selected'}</p>
-
-<p>This is a paragraph</p>
